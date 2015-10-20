@@ -1,0 +1,863 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="provisioning" targetNamespace="http://swifta.com/sub/mats/operation/provisioning/v1.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://swifta.com/sub/mats/operation/provisioning/v1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://swifta.com/sub/mats/operation/provisioning/v1.0" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://swifta.com/sub/mats/operation/provisioning/v1.0">
+    <xs:element name="activationrequest" type="tns:activationrequest"/>
+    <xs:element name="activationrequestResponse" type="tns:activationrequestResponse"/>
+    <xs:element name="addaccount" type="tns:addaccount"/>
+    <xs:element name="addaccountResponse" type="tns:addaccountResponse"/>
+    <xs:element name="addaccounttoexistinguser" type="tns:addaccounttoexistinguser"/>
+    <xs:element name="addaccounttoexistinguserResponse" type="tns:addaccounttoexistinguserResponse"/>
+    <xs:element name="addcustodyaccount" type="tns:addcustodyaccount"/>
+    <xs:element name="addcustodyaccountResponse" type="tns:addcustodyaccountResponse"/>
+    <xs:element name="authenticate" type="tns:authenticate"/>
+    <xs:element name="authenticateResponse" type="tns:authenticateResponse"/>
+    <xs:element name="disconnectaccount" type="tns:disconnectaccount"/>
+    <xs:element name="disconnectaccountResponse" type="tns:disconnectaccountResponse"/>
+    <xs:element name="getProfileofUser" type="tns:getProfileofUser"/>
+    <xs:element name="getProfileofUserResponse" type="tns:getProfileofUserResponse"/>
+    <xs:element name="isProfileauthorised" type="tns:isProfileauthorised"/>
+    <xs:element name="isProfileauthorisedResponse" type="tns:isProfileauthorisedResponse"/>
+    <xs:element name="linkaccountrequest" type="tns:linkaccountrequest"/>
+    <xs:element name="linkaccountrequestResponse" type="tns:linkaccountrequestResponse"/>
+    <xs:element name="registration" type="tns:registration"/>
+    <xs:element name="registrationResponse" type="tns:registrationResponse"/>
+    <xs:element name="setdefaultaccount" type="tns:setdefaultaccount"/>
+    <xs:element name="setdefaultaccountResponse" type="tns:setdefaultaccountResponse"/>
+    <xs:element name="setparentaccount" type="tns:setparentaccount"/>
+    <xs:element name="setparentaccountResponse" type="tns:setparentaccountResponse"/>
+    <xs:element name="setupservicefeesandcommission" type="tns:setupservicefeesandcommission"/>
+    <xs:element name="setupservicefeesandcommissionResponse" type="tns:setupservicefeesandcommissionResponse"/>
+    <xs:element name="suspendaccountholder" type="tns:suspendaccountholder"/>
+    <xs:element name="suspendaccountholderResponse" type="tns:suspendaccountholderResponse"/>
+    <xs:complexType name="suspendaccountholder">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="resourceid" type="xs:string"/>
+            <xs:element minOccurs="0" name="confirmcredential" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="suspendaccountholderResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:suspendaccountholderrequestresponse"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="suspendaccountholderrequestresponse">
+        <xs:complexContent>
+            <xs:extension base="tns:operationresponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="responsemessage" type="xs:string"/>
+                    <xs:element minOccurs="0" name="statuscode" type="tns:statusCode"/>
+                    <xs:element minOccurs="0" name="extensionparameters" type="tns:parameterExtension"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType abstract="true" name="operationresponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="responsemessage" type="xs:string"/>
+            <xs:element minOccurs="0" name="statuscode" type="tns:statusCode"/>
+            <xs:element minOccurs="0" name="parameterextension" type="tns:parameterExtension"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="parameterExtension">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="mmoperator" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="extension" nillable="true" type="tns:extension"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="extension">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="any" nillable="true" type="xs:anyType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="linkaccountrequest">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="userresourceid" type="xs:string"/>
+            <xs:element minOccurs="0" name="profileid" type="xs:string"/>
+            <xs:element minOccurs="0" name="paraentaccountresourceid" type="xs:string"/>
+            <xs:element minOccurs="0" name="reason" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="linkaccountrequestResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:linkaccountresponse"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="linkaccountresponse">
+        <xs:complexContent>
+            <xs:extension base="tns:operationresponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="responsemessage" type="xs:string"/>
+                    <xs:element minOccurs="0" name="statuscode" type="tns:statusCode"/>
+                    <xs:element minOccurs="0" name="extensionparameters" type="tns:parameterExtension"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="isProfileauthorised">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="profilename" type="xs:string"/>
+            <xs:element minOccurs="0" name="operation" type="xs:string"/>
+            <xs:element minOccurs="0" name="permission" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="isProfileauthorisedResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:isprofileathresponse"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="isprofileathresponse">
+        <xs:complexContent>
+            <xs:extension base="tns:operationresponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="ResponseMessage" type="xs:string"/>
+                    <xs:element minOccurs="0" name="extension" type="tns:extension"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="setdefaultaccount">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="userresourceid" type="xs:string"/>
+            <xs:element minOccurs="0" name="paraentaccountresourceid" type="xs:string"/>
+            <xs:element minOccurs="0" name="reason" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="setdefaultaccountResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:setDefaultaccountrequestresponse"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="setDefaultaccountrequestresponse">
+        <xs:complexContent>
+            <xs:extension base="tns:operationresponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="responsemessage" type="xs:string"/>
+                    <xs:element minOccurs="0" name="statuscode" type="tns:statusCode"/>
+                    <xs:element minOccurs="0" name="extensionparameters" type="tns:parameterExtension"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="authenticate">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="resourceid" type="xs:string"/>
+            <xs:element minOccurs="0" name="password" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="authenticateResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:authenticationresponse"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="authenticationresponse">
+        <xs:complexContent>
+            <xs:extension base="tns:operationresponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="ResponseMessage" type="xs:string"/>
+                    <xs:element minOccurs="0" name="extension" type="tns:extension"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="activationrequest">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="resourceid" type="xs:string"/>
+            <xs:element minOccurs="0" name="credential" type="tns:credentials"/>
+            <xs:element minOccurs="0" name="securityquestionanswer" type="xs:string"/>
+            <xs:element minOccurs="0" name="identificationno" type="xs:string"/>
+            <xs:element minOccurs="0" name="bankdomainid" type="xs:string"/>
+            <xs:element minOccurs="0" name="currency" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="credentials">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="firstpin" type="xs:string"/>
+            <xs:element minOccurs="0" name="confirmpin" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="activationrequestResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:activationresponse"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="activationresponse">
+        <xs:complexContent>
+            <xs:extension base="tns:operationresponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="ResponseMessage" type="xs:string"/>
+                    <xs:element minOccurs="0" name="extension" type="tns:extension"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="setparentaccount">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="userresourceid" type="xs:string"/>
+            <xs:element minOccurs="0" name="paraentaccountresourceid" type="xs:string"/>
+            <xs:element minOccurs="0" name="reason" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="setparentaccountResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:setparentrequestresponse"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="setparentrequestresponse">
+        <xs:complexContent>
+            <xs:extension base="tns:operationresponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="responsemessage" type="xs:string"/>
+                    <xs:element minOccurs="0" name="statuscode" type="tns:statusCode"/>
+                    <xs:element minOccurs="0" name="extensionparameters" type="tns:parameterExtension"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="getProfileofUser">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="resourceid" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="getProfileofUserResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:getuserprofileresponse"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="getuserprofileresponse">
+        <xs:complexContent>
+            <xs:extension base="tns:operationresponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="extension" type="tns:extension"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="setupservicefeesandcommission">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="spaccountholderid" type="xs:string"/>
+            <xs:element minOccurs="0" name="servicefeecondition" type="tns:serviceFeeConditionTypes"/>
+            <xs:element minOccurs="0" name="servicefeemodel" type="tns:serviceFeeModelTypes"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="servicefeedetails" type="tns:serviceFees"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="servicecommissiondetails" type="tns:serviceCommission"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="serviceFees">
+        <xs:complexContent>
+            <xs:extension base="tns:serviceFeesInterface">
+                <xs:sequence>
+                    <xs:element name="transactiontypeid" type="xs:int"/>
+                    <xs:element minOccurs="0" name="minimumamount" type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="maximumamount" type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="servicefee" type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="servicefeetype" type="tns:serviceFeematrix"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType abstract="true" name="serviceFeesInterface">
+        <xs:sequence>
+            <xs:element name="transactiontypeid" type="xs:int"/>
+            <xs:element minOccurs="0" name="minimumamount" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="maximumamount" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="servicefee" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="servicefeetype" type="tns:serviceFeematrix"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="serviceCommission">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="servicecommissioncondition" type="tns:serviceCommissionConditionTypes"/>
+            <xs:element minOccurs="0" name="servicecommissionmodeltype" type="tns:serviceCommissionModelTypes"/>
+            <xs:element name="transactiontypeid" type="xs:int"/>
+            <xs:element minOccurs="0" name="minimumamount" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="maximumamount" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="commissionfee" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="commissionfeetype" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="setupservicefeesandcommissionResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:servicefeeandcomissionrequestresponse"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="servicefeeandcomissionrequestresponse">
+        <xs:complexContent>
+            <xs:extension base="tns:operationresponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="responsemessage" type="xs:string"/>
+                    <xs:element minOccurs="0" name="statuscode" type="tns:statusCode"/>
+                    <xs:element minOccurs="0" name="extensionparameters" type="tns:parameterExtension"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="registration">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="username" type="xs:string"/>
+            <xs:element minOccurs="0" name="msisdn" type="xs:string"/>
+            <xs:element minOccurs="0" name="email" type="xs:string"/>
+            <xs:element name="profileid" type="xs:int"/>
+            <xs:element name="bankcodeid" type="xs:int"/>
+            <xs:element minOccurs="0" name="bankaccount" type="xs:string"/>
+            <xs:element minOccurs="0" name="clearingnumber" type="xs:string"/>
+            <xs:element minOccurs="0" name="accountholderdetails" type="tns:accountholderdetails"/>
+            <xs:element minOccurs="0" name="currencyid" type="xs:string"/>
+            <xs:element minOccurs="0" name="bankdomainnameid" type="xs:string"/>
+            <xs:element minOccurs="0" name="termscondition" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="securityquestions" type="tns:securityquestions"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="accountholderdetails">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="firstname" type="xs:string"/>
+            <xs:element minOccurs="0" name="lastname" type="xs:string"/>
+            <xs:element minOccurs="0" name="middlename" type="xs:string"/>
+            <xs:element minOccurs="0" name="suffix" type="xs:string"/>
+            <xs:element minOccurs="0" name="prefix" type="xs:string"/>
+            <xs:element name="genderid" type="xs:int"/>
+            <xs:element name="countryid" type="xs:int"/>
+            <xs:element name="stateid" type="xs:int"/>
+            <xs:element name="lgaid" type="xs:int"/>
+            <xs:element name="languageid" type="xs:int"/>
+            <xs:element minOccurs="0" name="occupation" type="xs:string"/>
+            <xs:element minOccurs="0" name="employer" type="xs:string"/>
+            <xs:element minOccurs="0" name="identification" type="tns:identification"/>
+            <xs:element minOccurs="0" name="address" type="tns:address"/>
+            <xs:element minOccurs="0" name="dateofbirth" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="primarycontact" type="tns:primaryContactInfo"/>
+            <xs:element minOccurs="0" name="secondarycontact" type="tns:secondaryContactInfo"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="identification">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="identificationNo" type="xs:string"/>
+            <xs:element minOccurs="0" name="identificationType" type="tns:identificationType"/>
+            <xs:element minOccurs="0" name="expirydate" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="issuer" type="xs:string"/>
+            <xs:element minOccurs="0" name="issueDate" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="address">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="streetaddress" type="xs:string"/>
+            <xs:element minOccurs="0" name="postalCode" type="xs:string"/>
+            <xs:element minOccurs="0" name="city" type="xs:string"/>
+            <xs:element minOccurs="0" name="province" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="primaryContactInfo">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="name" type="xs:string"/>
+            <xs:element minOccurs="0" name="mobilenumber" type="xs:string"/>
+            <xs:element minOccurs="0" name="phonenumber" type="xs:string"/>
+            <xs:element minOccurs="0" name="email" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="secondaryContactInfo">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="name" type="xs:string"/>
+            <xs:element minOccurs="0" name="mobilenumber" type="xs:string"/>
+            <xs:element minOccurs="0" name="phonenumber" type="xs:string"/>
+            <xs:element minOccurs="0" name="email" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="securityquestions">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="question" type="xs:string"/>
+            <xs:element minOccurs="0" name="answer" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="registrationResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:registrationrequestresponse"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="registrationrequestresponse">
+        <xs:complexContent>
+            <xs:extension base="tns:operationresponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="responsemessage" type="xs:string"/>
+                    <xs:element minOccurs="0" name="statuscode" type="tns:statusCode"/>
+                    <xs:element minOccurs="0" name="extensionparameters" type="tns:parameterExtension"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="disconnectaccount">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="userresourceid" type="xs:string"/>
+            <xs:element minOccurs="0" name="paraentaccountresourceid" type="xs:string"/>
+            <xs:element minOccurs="0" name="reason" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="disconnectaccountResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:disconnectaccountrequestresponse"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="disconnectaccountrequestresponse">
+        <xs:complexContent>
+            <xs:extension base="tns:operationresponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="responsemessage" type="xs:string"/>
+                    <xs:element minOccurs="0" name="statuscode" type="tns:statusCode"/>
+                    <xs:element minOccurs="0" name="extensionparameters" type="tns:parameterExtension"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="addcustodyaccount">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="currencycode" type="xs:string"/>
+            <xs:element minOccurs="0" name="bankcode" type="xs:string"/>
+            <xs:element minOccurs="0" name="accountnumber" type="xs:string"/>
+            <xs:element minOccurs="0" name="accountname" type="xs:string"/>
+            <xs:element minOccurs="0" name="bankdomain" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="addcustodyaccountResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:addcustodyaccountrequestresponse"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="addcustodyaccountrequestresponse">
+        <xs:complexContent>
+            <xs:extension base="tns:operationresponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="accountnumber" type="xs:string"/>
+                    <xs:element minOccurs="0" name="statuscode" type="tns:statusCode"/>
+                    <xs:element minOccurs="0" name="extensionparameters" type="tns:parameterExtension"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="addaccounttoexistinguser">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="resourceid" type="xs:string"/>
+            <xs:element minOccurs="0" name="accounttype" type="xs:string"/>
+            <xs:element minOccurs="0" name="profileid" type="xs:string"/>
+            <xs:element minOccurs="0" name="currency" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="addaccounttoexistinguserResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:addaccounttoexistinguserrequestresponse"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="addaccounttoexistinguserrequestresponse">
+        <xs:complexContent>
+            <xs:extension base="tns:operationresponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="accountnumber" type="xs:string"/>
+                    <xs:element minOccurs="0" name="statuscode" type="tns:statusCode"/>
+                    <xs:element minOccurs="0" name="extensionparameters" type="tns:parameterExtension"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="addaccount">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="accounttype" type="xs:string"/>
+            <xs:element minOccurs="0" name="accountprofileid" type="xs:string"/>
+            <xs:element minOccurs="0" name="accountreferenceprofile" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="addaccountResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:addaccountrequestresponse"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="addaccountrequestresponse">
+        <xs:complexContent>
+            <xs:extension base="tns:operationresponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="accountnumber" type="xs:string"/>
+                    <xs:element minOccurs="0" name="statuscode" type="tns:statusCode"/>
+                    <xs:element minOccurs="0" name="extensionparameters" type="tns:parameterExtension"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:simpleType name="statusCode">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="COMPLETED"/>
+            <xs:enumeration value="REJECTED"/>
+            <xs:enumeration value="PENDING"/>
+            <xs:enumeration value="FAILED"/>
+            <xs:enumeration value="CREATED"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="serviceFeeConditionTypes">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="TRANSACTIONTYPE"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="serviceFeeModelTypes">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="TIERED"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="serviceFeematrix">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PERCENT"/>
+            <xs:enumeration value="FIXED"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="serviceCommissionConditionTypes">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="FEE"/>
+            <xs:enumeration value="AMOUNT"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="serviceCommissionModelTypes">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="NOTAPPLICABLE"/>
+            <xs:enumeration value="TIERED"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="identificationType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PASSP"/>
+            <xs:enumeration value="DRLCS"/>
+            <xs:enumeration value="SOCS"/>
+            <xs:enumeration value="IDCD"/>
+            <xs:enumeration value="EMID"/>
+            <xs:enumeration value="NRIN"/>
+            <xs:enumeration value="OTHR"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getProfileofUserResponse">
+    <wsdl:part name="parameters" element="tns:getProfileofUserResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="registrationResponse">
+    <wsdl:part name="parameters" element="tns:registrationResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setdefaultaccountResponse">
+    <wsdl:part name="parameters" element="tns:setdefaultaccountResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addcustodyaccount">
+    <wsdl:part name="parameters" element="tns:addcustodyaccount">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addaccounttoexistinguserResponse">
+    <wsdl:part name="parameters" element="tns:addaccounttoexistinguserResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="authenticateResponse">
+    <wsdl:part name="parameters" element="tns:authenticateResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="activationrequest">
+    <wsdl:part name="parameters" element="tns:activationrequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="disconnectaccountResponse">
+    <wsdl:part name="parameters" element="tns:disconnectaccountResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="linkaccountrequest">
+    <wsdl:part name="parameters" element="tns:linkaccountrequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addcustodyaccountResponse">
+    <wsdl:part name="parameters" element="tns:addcustodyaccountResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isProfileauthorisedResponse">
+    <wsdl:part name="parameters" element="tns:isProfileauthorisedResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="suspendaccountholderResponse">
+    <wsdl:part name="parameters" element="tns:suspendaccountholderResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setupservicefeesandcommissionResponse">
+    <wsdl:part name="parameters" element="tns:setupservicefeesandcommissionResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProfileofUser">
+    <wsdl:part name="parameters" element="tns:getProfileofUser">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="registration">
+    <wsdl:part name="parameters" element="tns:registration">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="activationrequestResponse">
+    <wsdl:part name="parameters" element="tns:activationrequestResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setparentaccount">
+    <wsdl:part name="parameters" element="tns:setparentaccount">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="authenticate">
+    <wsdl:part name="parameters" element="tns:authenticate">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setparentaccountResponse">
+    <wsdl:part name="parameters" element="tns:setparentaccountResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setupservicefeesandcommission">
+    <wsdl:part name="parameters" element="tns:setupservicefeesandcommission">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isProfileauthorised">
+    <wsdl:part name="parameters" element="tns:isProfileauthorised">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="disconnectaccount">
+    <wsdl:part name="parameters" element="tns:disconnectaccount">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setdefaultaccount">
+    <wsdl:part name="parameters" element="tns:setdefaultaccount">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addaccount">
+    <wsdl:part name="parameters" element="tns:addaccount">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addaccountResponse">
+    <wsdl:part name="parameters" element="tns:addaccountResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="linkaccountrequestResponse">
+    <wsdl:part name="parameters" element="tns:linkaccountrequestResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="suspendaccountholder">
+    <wsdl:part name="parameters" element="tns:suspendaccountholder">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addaccounttoexistinguser">
+    <wsdl:part name="parameters" element="tns:addaccounttoexistinguser">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="Provisioning">
+    <wsdl:operation name="suspendaccountholder">
+      <wsdl:input name="suspendaccountholder" message="tns:suspendaccountholder">
+    </wsdl:input>
+      <wsdl:output name="suspendaccountholderResponse" message="tns:suspendaccountholderResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="linkaccountrequest">
+      <wsdl:input name="linkaccountrequest" message="tns:linkaccountrequest">
+    </wsdl:input>
+      <wsdl:output name="linkaccountrequestResponse" message="tns:linkaccountrequestResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isProfileauthorised">
+      <wsdl:input name="isProfileauthorised" message="tns:isProfileauthorised">
+    </wsdl:input>
+      <wsdl:output name="isProfileauthorisedResponse" message="tns:isProfileauthorisedResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setdefaultaccount">
+      <wsdl:input name="setdefaultaccount" message="tns:setdefaultaccount">
+    </wsdl:input>
+      <wsdl:output name="setdefaultaccountResponse" message="tns:setdefaultaccountResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="authenticate">
+      <wsdl:input name="authenticate" message="tns:authenticate">
+    </wsdl:input>
+      <wsdl:output name="authenticateResponse" message="tns:authenticateResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="activationrequest">
+      <wsdl:input name="activationrequest" message="tns:activationrequest">
+    </wsdl:input>
+      <wsdl:output name="activationrequestResponse" message="tns:activationrequestResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setparentaccount">
+      <wsdl:input name="setparentaccount" message="tns:setparentaccount">
+    </wsdl:input>
+      <wsdl:output name="setparentaccountResponse" message="tns:setparentaccountResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getProfileofUser">
+      <wsdl:input name="getProfileofUser" message="tns:getProfileofUser">
+    </wsdl:input>
+      <wsdl:output name="getProfileofUserResponse" message="tns:getProfileofUserResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setupservicefeesandcommission">
+      <wsdl:input name="setupservicefeesandcommission" message="tns:setupservicefeesandcommission">
+    </wsdl:input>
+      <wsdl:output name="setupservicefeesandcommissionResponse" message="tns:setupservicefeesandcommissionResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registration">
+      <wsdl:input name="registration" message="tns:registration">
+    </wsdl:input>
+      <wsdl:output name="registrationResponse" message="tns:registrationResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="disconnectaccount">
+      <wsdl:input name="disconnectaccount" message="tns:disconnectaccount">
+    </wsdl:input>
+      <wsdl:output name="disconnectaccountResponse" message="tns:disconnectaccountResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addcustodyaccount">
+      <wsdl:input name="addcustodyaccount" message="tns:addcustodyaccount">
+    </wsdl:input>
+      <wsdl:output name="addcustodyaccountResponse" message="tns:addcustodyaccountResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addaccounttoexistinguser">
+      <wsdl:input name="addaccounttoexistinguser" message="tns:addaccounttoexistinguser">
+    </wsdl:input>
+      <wsdl:output name="addaccounttoexistinguserResponse" message="tns:addaccounttoexistinguserResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addaccount">
+      <wsdl:input name="addaccount" message="tns:addaccount">
+    </wsdl:input>
+      <wsdl:output name="addaccountResponse" message="tns:addaccountResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="provisioningSoapBinding" type="tns:Provisioning">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="isProfileauthorised">
+      <soap:operation soapAction="isProfileauthorised" style="document"/>
+      <wsdl:input name="isProfileauthorised">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="isProfileauthorisedResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="linkaccountrequest">
+      <soap:operation soapAction="linkaccountrequest" style="document"/>
+      <wsdl:input name="linkaccountrequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="linkaccountrequestResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="suspendaccountholder">
+      <soap:operation soapAction="suspendaccountholder" style="document"/>
+      <wsdl:input name="suspendaccountholder">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="suspendaccountholderResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="activationrequest">
+      <soap:operation soapAction="activationrequest" style="document"/>
+      <wsdl:input name="activationrequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="activationrequestResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="authenticate">
+      <soap:operation soapAction="authenticate" style="document"/>
+      <wsdl:input name="authenticate">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="authenticateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setdefaultaccount">
+      <soap:operation soapAction="setdefaultaccount" style="document"/>
+      <wsdl:input name="setdefaultaccount">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setdefaultaccountResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getProfileofUser">
+      <soap:operation soapAction="getProfileofUser" style="document"/>
+      <wsdl:input name="getProfileofUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getProfileofUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setparentaccount">
+      <soap:operation soapAction="setparentaccount" style="document"/>
+      <wsdl:input name="setparentaccount">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setparentaccountResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="disconnectaccount">
+      <soap:operation soapAction="disconnectaccount" style="document"/>
+      <wsdl:input name="disconnectaccount">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="disconnectaccountResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registration">
+      <soap:operation soapAction="registration" style="document"/>
+      <wsdl:input name="registration">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="registrationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setupservicefeesandcommission">
+      <soap:operation soapAction="setufeeandcommission" style="document"/>
+      <wsdl:input name="setupservicefeesandcommission">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setupservicefeesandcommissionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addcustodyaccount">
+      <soap:operation soapAction="addcustodyaccount" style="document"/>
+      <wsdl:input name="addcustodyaccount">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addcustodyaccountResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addaccounttoexistinguser">
+      <soap:operation soapAction="addaccounttoexistinguser" style="document"/>
+      <wsdl:input name="addaccounttoexistinguser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addaccounttoexistinguserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addaccount">
+      <soap:operation soapAction="addaccount" style="document"/>
+      <wsdl:input name="addaccount">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addaccountResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="provisioning">
+    <wsdl:port name="ProvisioningPort" binding="tns:provisioningSoapBinding">
+      <soap:address location="http://localhost:9090/ProvisioningPort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
